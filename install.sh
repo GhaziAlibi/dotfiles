@@ -37,35 +37,46 @@ command_exists() {
 
 # Function to install packages using pacman (Arch Linux)
 install_package() {
-  if ! command_exists "$1"; then
-    print_info "Installing $1..."
-    sudo pacman -S --noconfirm "$1" || {
-      print_error "Failed to install $1"
-      return 1
-    }
-    print_success "$1 installed successfully"
-  else
-    print_info "$1 is already installed"
+  local package="$1"
+  
+  # Check if package is already installed using pacman -Qi
+  if pacman -Qi "$package" &> /dev/null; then
+    print_info "$package is already installed"
+    return 0
   fi
+  
+  # If not installed, install it
+  print_info "Installing $package..."
+  sudo pacman -S --noconfirm "$package" || {
+    print_error "Failed to install $package"
+    return 1
+  }
+  print_success "$package installed successfully"
 }
 
 # Function to install packages using yay (AUR helper for Arch Linux)
 install_aur_package() {
+  local package="$1"
+  
+  # Check if yay is available
   if ! command_exists "yay"; then
-    print_error "Yay is not installed. Cannot install AUR package $1"
+    print_error "Yay is not installed. Cannot install AUR package $package"
     return 1
   fi
   
-  if ! yay -Qi "$1" &> /dev/null; then
-    print_info "Installing $1 from AUR..."
-    yay -S --noconfirm "$1" || {
-      print_error "Failed to install $1 from AUR"
-      return 1
-    }
-    print_success "$1 installed successfully from AUR"
-  else
-    print_info "$1 is already installed"
+  # Check if package is already installed using yay -Qi
+  if yay -Qi "$package" &> /dev/null; then
+    print_info "$package is already installed"
+    return 0
   fi
+  
+  # If not installed, install it
+  print_info "Installing $package from AUR..."
+  yay -S --noconfirm "$package" || {
+    print_error "Failed to install $package from AUR"
+    return 1
+  }
+  print_success "$package installed successfully from AUR"
 }
 
 # Function to install yay if not already installed
@@ -195,40 +206,78 @@ setup_ssh() {
 install_dev_tools() {
   print_info "Installing developer tools..."
   
+  # Define arrays of packages to install
   # Standard packages available in official repositories
+  local standard_packages=(
+    "fastfetch"  # System information display
+    "ripgrep"   # Fast search tool (better grep)
+    "neovim"    # Modern vim editor
+    "bat"       # Cat with syntax highlighting
+    "git-delta" # Better git diff viewer
+    "fd"        # Fast find alternative
+    "jq"        # JSON processor
+  )
+  
+  # AUR packages that require yay
+  local aur_packages=(
+    "exa"      # Modern ls replacement
+    "lazygit"  # Terminal UI for git
+  )
+  
+  # Install standard packages
   print_info "Installing packages from official repositories..."
-  local standard_packages=("neofetch" "ripgrep" "neovim")
+  local failed_packages=()
+  local success_count=0
+  local total_standard=${#standard_packages[@]}
   
   for package in "${standard_packages[@]}"; do
     install_package "$package" || {
       print_warning "Failed to install $package, continuing with other packages"
+      failed_packages+=("$package")
     }
+    
+    if ! [[ " ${failed_packages[*]} " =~ " $package " ]]; then
+      ((success_count++))
+    fi
   done
   
-  # Check if bat is already installed (it might be installed as 'bat' or 'batcat' depending on the distribution)
-  if ! command_exists "bat"; then
-    install_package "bat" || {
-      print_warning "Failed to install bat, continuing with other packages"
-    }
+  # Report results for standard packages
+  if [ ${#failed_packages[@]} -eq 0 ]; then
+    print_success "All standard packages installed successfully"
   else
-    print_info "bat is already installed"
+    print_warning "$success_count of $total_standard standard packages installed. Failed packages: ${failed_packages[*]}"
   fi
   
-  # AUR packages that require yay
+  # Install AUR packages if yay is available
   if command_exists "yay"; then
     print_info "Installing packages from AUR..."
-    local aur_packages=("exa" "lazygit")
+    local failed_aur_packages=()
+    local success_aur_count=0
+    local total_aur=${#aur_packages[@]}
     
     for package in "${aur_packages[@]}"; do
       install_aur_package "$package" || {
         print_warning "Failed to install $package from AUR, continuing with other packages"
+        failed_aur_packages+=("$package")
       }
+      
+      if ! [[ " ${failed_aur_packages[*]} " =~ " $package " ]]; then
+        ((success_aur_count++))
+      fi
     done
+    
+    # Report results for AUR packages
+    if [ ${#failed_aur_packages[@]} -eq 0 ]; then
+      print_success "All AUR packages installed successfully"
+    else
+      print_warning "$success_aur_count of $total_aur AUR packages installed. Failed packages: ${failed_aur_packages[*]}"
+    fi
   else
-    print_warning "Yay is not installed, skipping AUR packages (exa, lazygit)"
+    print_warning "Yay is not installed, skipping AUR packages installation"
+    print_info "AUR packages that would have been installed: ${aur_packages[*]}"
   fi
   
-  print_info "Developer tools installation completed"
+  print_success "Developer tools installation completed"
   return 0
 }
 
