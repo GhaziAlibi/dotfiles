@@ -10,7 +10,7 @@
     # Prevent showing files whose names contain non-ASCII symbols as unversioned
     precomposeunicode = true
     # Use custom `.gitignore`
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore_global
     # Speed up commands involving untracked files
     untrackedCache = true
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
