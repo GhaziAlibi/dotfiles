@@ -1,0 +1,130 @@
+# Ultra-minimal Starship configuration for WezTerm
+
+# Absolute minimal format
+format = "$directory$git_branch$git_status$nodejs$python$rust$dotnet$golang$character"
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+# Wait 10 milliseconds for starship to check files under the current directory
+scan_timeout = 10
+
+# Prompt character
+[character]
+success_symbol = "[>](green)"
+error_symbol = "[>](red)"
+vicmd_symbol = "[<](yellow)"
+
+# Username - disabled in minimal config
+[username]
+disabled = true
+
+# Directory
+[directory]
+style = "cyan"
+format = "$path"
+truncation_length = 2
+truncation_symbol = "…/"
+home_symbol = "~"
+read_only = " ro"
+read_only_style = "red"
+# Git branch
+[git_branch]
+symbol = ":"
+style = "yellow"
+format = '$symbol$branch'
+truncation_length = 20
+truncation_symbol = "…"
+
+# Git status
+[git_status]
+style = "yellow"
+format = "$all_status$ahead_behind"
+conflicted = "="
+ahead = "↑"
+behind = "↓"
+diverged = "↕"
+up_to_date = ""
+untracked = "?"
+stashed = "*"
+modified = "!"
+staged = "+"
+renamed = "r"
+deleted = "x"
+# Time
+[time]
+disabled = true
+time_format = "%R" # Hour:Minute format
+style = "dimmed"
+format = '[%R]($style) '
+
+# Status
+[status]
+symbol = "✖"
+format = '[$symbol $status]($style) '
+disabled = false
+style = "red"
+
+# Disable battery completely
+[battery]
+disabled = true
+# Language and technology modules
+
+# Node.js
+[nodejs]
+symbol = "⬡"
+style = "green"
+format = '$symbol'
+detect_extensions = ["js", "jsx", "ts", "tsx", "mjs", "cjs"]
+detect_files = ["package.json", ".node-version", "yarn.lock", "package-lock.json"]
+detect_folders = ["node_modules"]
+version_format = ""
+
+# Python
+[python]
+symbol = "🐍"
+style = "blue"
+format = '$symbol'
+detect_extensions = ["py", "pyc", "pyd"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", "setup.py"]
+detect_folders = [".venv", "venv", ".env", "env"]
+version_format = ""
+
+# Rust
+[rust]
+symbol = "🦀"
+style = "red"
+format = '$symbol'
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+version_format = ""
+
+# .NET
+[dotnet]
+symbol = "•"
+style = "magenta"
+format = '$symbol'
+detect_extensions = ["csproj", "fsproj", "xproj"]
+detect_files = ["global.json", "project.json", "Directory.Build.props", ".csproj", ".fsproj"]
+detect_folders = [".dotnet"]
+version_format = ""
+
+# Go
+[golang]
+symbol = "🐹"
+style = "cyan"
+format = '$symbol'
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum"]
+detect_folders = ["Godeps"]
+version_format = ""
+
+# Disable other technology modules that aren't needed
+[docker_context]
+disabled = true
+
+[conda]
+disabled = true
+
+[java]
+disabled = true
+

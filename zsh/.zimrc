@@ -1,0 +1,45 @@
+# =================
+# Zim Configuration
+# =================
+
+
+# Set window title
+# Note: Using built-in ZSH title functionality instead of terminal module
+
+# Completion
+zmodule zsh-users/zsh-completions
+
+# Core modules
+zmodule environment
+zmodule git-info
+zmodule input
+zmodule utility
+zmodule duration-info
+
+# Prompt (disabled as we use Starship)
+# zmodule prompt
+
+# Syntax highlighting (should be after completion)
+zmodule zsh-users/zsh-syntax-highlighting
+
+# Fish-like autosuggestions
+zmodule zsh-users/zsh-autosuggestions
+
+# History search
+zmodule zsh-users/zsh-history-substring-search
+
+# Directory navigation
+zmodule agkozak/zsh-z
+
+# Improved directory listing
+zmodule supercrabtree/k
+
+# Fuzzy finder integration
+# Check if fzf is installed
+if (( $+commands[fzf] )); then
+  zmodule junegunn/fzf
+fi
+
+# Git aliases and utilities
+zmodule git
+
