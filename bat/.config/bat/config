@@ -1,0 +1,17 @@
+# Set the theme to Dracula
+--theme="Dracula"
+
+# Show line numbers, Git modifications and file header (but no grid)
+--style="numbers,changes,header"
+
+# Use italic text on the terminal (not supported on all terminals)
+--italic-text=always
+
+# Use C++ syntax for .ino files
+--map-syntax "*.ino:C++"
+
+# Use ".gitignore"-style pattern syntax
+--pattern="*.{js,jsx,ts,tsx}"
+
+# Syntax highlight for markdown code blocks
+--pager="less -FR"

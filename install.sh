@@ -191,6 +191,47 @@ setup_ssh() {
   return 0
 }
 
+# Function to install developer tools
+install_dev_tools() {
+  print_info "Installing developer tools..."
+  
+  # Standard packages available in official repositories
+  print_info "Installing packages from official repositories..."
+  local standard_packages=("neofetch" "ripgrep" "neovim")
+  
+  for package in "${standard_packages[@]}"; do
+    install_package "$package" || {
+      print_warning "Failed to install $package, continuing with other packages"
+    }
+  done
+  
+  # Check if bat is already installed (it might be installed as 'bat' or 'batcat' depending on the distribution)
+  if ! command_exists "bat"; then
+    install_package "bat" || {
+      print_warning "Failed to install bat, continuing with other packages"
+    }
+  else
+    print_info "bat is already installed"
+  fi
+  
+  # AUR packages that require yay
+  if command_exists "yay"; then
+    print_info "Installing packages from AUR..."
+    local aur_packages=("exa" "lazygit")
+    
+    for package in "${aur_packages[@]}"; do
+      install_aur_package "$package" || {
+        print_warning "Failed to install $package from AUR, continuing with other packages"
+      }
+    done
+  else
+    print_warning "Yay is not installed, skipping AUR packages (exa, lazygit)"
+  fi
+  
+  print_info "Developer tools installation completed"
+  return 0
+}
+
 # Function to stow a package
 stow_package() {
   local package="$1"
@@ -241,6 +282,9 @@ main() {
   
   # Install Zimfw
   install_zimfw || exit 1
+  
+  # Install developer tools
+  install_dev_tools
   
   # Setup SSH (optional)
   setup_ssh
