@@ -1,6 +1,6 @@
 # Dotfiles
 
-A personal collection of configuration files for zsh, starship prompt, zim framework, and fzf.
+A personal collection of configuration files for zsh, starship prompt, zim framework, SSH, and more.
 
 ## Introduction
 
@@ -12,6 +12,8 @@ Included configurations:
 - **Zimfw**: ZSH plugin manager framework
 - **Starship**: Cross-shell prompt
 - **FZF**: Fuzzy finder
+- **SSH**: Secure Shell configuration
+- **Git**: Git configuration and global gitignore
 
 ## Directory Structure
 
@@ -21,6 +23,12 @@ The repository is organized following the GNU Stow conventions, with each applic
 dotfiles/
 ├── install.sh         # Automated installation script
 ├── README.md          # This documentation file
+├── git/              # Git configuration
+│   ├── .gitconfig       # Git settings
+│   └── .gitignore_global # Global gitignore patterns
+├── ssh/              # SSH configuration
+│   └── .ssh/
+│       └── config     # SSH client configuration
 ├── starship/          # Starship prompt configuration
 │   └── .config/
 │       └── starship.toml
@@ -64,6 +72,7 @@ The script will:
 - Install yay (AUR helper) if not present
 - Install fzf from AUR (if yay is available)
 - Install Starship and Zimfw
+- Optionally set up SSH keys for GitHub (with proper permissions)
 
 ### Manual Installation
 
@@ -145,6 +154,50 @@ If you've made changes to the directory structure:
 ```bash
 cd ~/dotfiles
 stow -R app_name
+```
+
+## SSH Setup
+
+The dotfiles include SSH client configuration with secure defaults. The installation script can also help you generate SSH keys for GitHub.
+
+### Manual SSH Key Generation
+
+If you didn't generate keys during installation or need additional keys:
+
+```bash
+# Generate a new Ed25519 key (recommended)
+ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/github_ed25519
+
+# Set proper permissions
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/github_ed25519
+chmod 644 ~/.ssh/github_ed25519.pub
+
+# Add to GitHub
+cat ~/.ssh/github_ed25519.pub
+# Copy the output and add to https://github.com/settings/keys
+
+# Test connection
+ssh -T git@github.com
+```
+
+### SSH Config
+
+The SSH configuration in `ssh/.ssh/config` includes settings for GitHub and general security hardening:
+
+```
+# Global settings with security hardening
+Host *
+    HashKnownHosts yes
+    IdentitiesOnly yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 2
+
+# GitHub-specific settings
+Host github.com
+    User git
+    IdentityFile ~/.ssh/github_ed25519
+    IdentitiesOnly yes
 ```
 
 ## License

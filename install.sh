@@ -140,6 +140,57 @@ install_starship() {
   fi
 }
 
+# Function to setup SSH keys and configuration
+setup_ssh() {
+  print_info "Setting up SSH..."
+  
+  # Create .ssh directory with proper permissions if it doesn't exist
+  if [ ! -d "${HOME}/.ssh" ]; then
+    print_info "Creating .ssh directory..."
+    mkdir -p "${HOME}/.ssh"
+    chmod 700 "${HOME}/.ssh"
+    print_success "Created .ssh directory with secure permissions"
+  else
+    chmod 700 "${HOME}/.ssh"
+    print_info ".ssh directory already exists, ensuring proper permissions"
+  fi
+  
+  # Ask if user wants to generate SSH keys
+  read -p "$(echo -e ${BLUE}[PROMPT]${NC}" Would you like to generate SSH keys for GitHub? (y/n): ")" generate_keys
+  
+  if [[ "$generate_keys" =~ ^[Yy]$ ]]; then
+    # Ask for email
+    read -p "$(echo -e ${BLUE}[PROMPT]${NC}" Enter your email for the SSH key: ")" ssh_email
+    
+    if [ -z "$ssh_email" ]; then
+      print_warning "No email provided, using default value"
+      ssh_email="user@example.com"
+    fi
+    
+    # Generate Ed25519 key for GitHub
+    print_info "Generating SSH key for GitHub..."
+    ssh-keygen -t ed25519 -C "$ssh_email" -f "${HOME}/.ssh/github_ed25519" || {
+      print_error "Failed to generate SSH key"
+      return 1
+    }
+    
+    # Set proper permissions
+    chmod 600 "${HOME}/.ssh/github_ed25519"
+    chmod 644 "${HOME}/.ssh/github_ed25519.pub"
+    
+    # Display the public key
+    echo -e "\n${GREEN}[SUCCESS]${NC} SSH key generated successfully"
+    echo -e "\n${YELLOW}[IMPORTANT]${NC} Add this public key to your GitHub account:"
+    echo -e "https://github.com/settings/keys\n"
+    cat "${HOME}/.ssh/github_ed25519.pub"
+    echo -e "\n${BLUE}[INFO]${NC} After adding the key to GitHub, test with: ssh -T git@github.com"
+  else
+    print_info "Skipping SSH key generation"
+  fi
+  
+  return 0
+}
+
 # Function to stow a package
 stow_package() {
   local package="$1"
@@ -190,6 +241,9 @@ main() {
   
   # Install Zimfw
   install_zimfw || exit 1
+  
+  # Setup SSH (optional)
+  setup_ssh
   
   # Create necessary directories
   print_info "Creating necessary directories..."
