@@ -14,6 +14,7 @@ Included configurations:
 - **FZF**: Fuzzy finder
 - **SSH**: Secure Shell configuration
 - **Git**: Git configuration and global gitignore
+- **VSCode**: Visual Studio Code configuration with settings, keybindings, and snippets
 
 ## Directory Structure
 
@@ -32,6 +33,16 @@ dotfiles/
 ├── starship/          # Starship prompt configuration
 │   └── .config/
 │       └── starship.toml
+├── vscode/            # VSCode configuration
+│   ├── .config/
+│   │   └── Code/
+│   │       └── User/
+│   │           ├── settings.json      # VSCode settings
+│   │           ├── keybindings.json   # Custom keybindings
+│   │           └── snippets/          # Code snippets
+│   │               ├── javascript.json
+│   │               └── python.json
+│   └── README.md      # VSCode-specific documentation
 └── zsh/               # ZSH shell configuration
     ├── .fzf.zsh       # FZF configuration for ZSH
     ├── .zimrc         # Zim framework configuration
@@ -108,6 +119,9 @@ If you prefer to install manually:
    cd ~/dotfiles
    stow zsh
    stow starship
+   stow vscode
+   stow git
+   stow ssh
    ```
 
 ## Usage

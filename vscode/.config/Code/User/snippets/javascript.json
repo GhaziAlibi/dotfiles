@@ -1,0 +1,228 @@
+{
+  "console.log": {
+    "prefix": "cl",
+    "body": ["console.log($1);"],
+    "description": "Log output to console"
+  },
+  "console.error": {
+    "prefix": "ce",
+    "body": ["console.error($1);"],
+    "description": "Log error to console"
+  },
+  "console.warn": {
+    "prefix": "cw",
+    "body": ["console.warn($1);"],
+    "description": "Log warning to console"
+  },
+  "console.table": {
+    "prefix": "ct",
+    "body": ["console.table($1);"],
+    "description": "Log table to console"
+  },
+  "function": {
+    "prefix": "fn",
+    "body": ["function ${1:name}(${2:params}) {", "  ${3:// body}", "}"],
+    "description": "Function declaration"
+  },
+  "arrow function": {
+    "prefix": "af",
+    "body": ["const ${1:name} = (${2:params}) => {", "  ${3:// body}", "};"],
+    "description": "Arrow function"
+  },
+  "async arrow function": {
+    "prefix": "aaf",
+    "body": ["const ${1:name} = async (${2:params}) => {", "  ${3:// body}", "};"],
+    "description": "Async arrow function"
+  },
+  "async function": {
+    "prefix": "afn",
+    "body": ["async function ${1:name}(${2:params}) {", "  ${3:// body}", "}"],
+    "description": "Async function declaration"
+  },
+  "for loop": {
+    "prefix": "for",
+    "body": ["for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {", "  ${3:// body}", "}"],
+    "description": "For loop"
+  },
+  "for...of loop": {
+    "prefix": "forof",
+    "body": ["for (const ${1:item} of ${2:array}) {", "  ${3:// body}", "}"],
+    "description": "For...of loop"
+  },
+  "for...in loop": {
+    "prefix": "forin",
+    "body": ["for (const ${1:key} in ${2:object}) {", "  ${3:// body}", "}"],
+    "description": "For...in loop"
+  },
+  "forEach": {
+    "prefix": "fe",
+    "body": ["${1:array}.forEach((${2:item}) => {", "  ${3:// body}", "});"],
+    "description": "forEach method"
+  },
+  "map": {
+    "prefix": "map",
+    "body": ["${1:array}.map((${2:item}) => {", "  return ${3:item};", "});"],
+    "description": "map method"
+  },
+  "filter": {
+    "prefix": "filter",
+    "body": ["${1:array}.filter((${2:item}) => {", "  return ${3:condition};", "});"],
+    "description": "filter method"
+  },
+  "reduce": {
+    "prefix": "reduce",
+    "body": ["${1:array}.reduce((${2:acc}, ${3:item}) => {", "  return ${4:acc};", "}, ${5:initialValue});"],
+    "description": "reduce method"
+  },
+  "find": {
+    "prefix": "find",
+    "body": ["${1:array}.find((${2:item}) => {", "  return ${3:condition};", "});"],
+    "description": "find method"
+  },
+  "if statement": {
+    "prefix": "if",
+    "body": ["if (${1:condition}) {", "  ${2:// body}", "}"],
+    "description": "If statement"
+  },
+  "if...else statement": {
+    "prefix": "ife",
+    "body": ["if (${1:condition}) {", "  ${2:// body}", "} else {", "  ${3:// body}", "}"],
+    "description": "If...else statement"
+  },
+  "try...catch": {
+    "prefix": "try",
+    "body": ["try {", "  ${1:// body}", "} catch (${2:error}) {", "  ${3:console.error(error);}", "}"],
+    "description": "Try...catch statement"
+  },
+  "try...catch...finally": {
+    "prefix": "tryf",
+    "body": ["try {", "  ${1:// body}", "} catch (${2:error}) {", "  ${3:console.error(error);}", "} finally {", "  ${4:// cleanup}", "}"],
+    "description": "Try...catch...finally statement"
+  },
+  "promise": {
+    "prefix": "promise",
+    "body": ["new Promise((resolve, reject) => {", "  ${1:// body}", "});"],
+    "description": "Promise constructor"
+  },
+  "setTimeout": {
+    "prefix": "timeout",
+    "body": ["setTimeout(() => {", "  ${1:// body}", "}, ${2:1000});"],
+    "description": "setTimeout function"
+  },
+  "setInterval": {
+    "prefix": "interval",
+    "body": ["setInterval(() => {", "  ${1:// body}", "}, ${2:1000});"],
+    "description": "setInterval function"
+  },
+  "class": {
+    "prefix": "class",
+    "body": ["class ${1:ClassName} {", "  constructor(${2:params}) {", "    ${3:// body}", "  }", "  ", "  ${4:methodName}() {", "    ${5:// body}", "  }", "}"],
+    "description": "Class declaration"
+  },
+  "constructor": {
+    "prefix": "ctor",
+    "body": ["constructor(${1:params}) {", "  ${2:// body}", "}"],
+    "description": "Constructor method"
+  },
+  "method": {
+    "prefix": "method",
+    "body": ["${1:methodName}(${2:params}) {", "  ${3:// body}", "}"],
+    "description": "Class method"
+  },
+  "getter": {
+    "prefix": "get",
+    "body": ["get ${1:propertyName}() {", "  return ${2:value};", "}"],
+    "description": "Getter method"
+  },
+  "setter": {
+    "prefix": "set",
+    "body": ["set ${1:propertyName}(${2:value}) {", "  ${3:// body}", "}"],
+    "description": "Setter method"
+  },
+  "import": {
+    "prefix": "imp",
+    "body": ["import { ${1:destructured} } from '${2:module}';"],
+    "description": "Import statement"
+  },
+  "import default": {
+    "prefix": "impd",
+    "body": ["import ${1:name} from '${2:module}';"],
+    "description": "Import default"
+  },
+  "export": {
+    "prefix": "exp",
+    "body": ["export { ${1:name} };"],
+    "description": "Export statement"
+  },
+  "export default": {
+    "prefix": "expd",
+    "body": ["export default ${1:name};"],
+    "description": "Export default"
+  },
+  "module.exports": {
+    "prefix": "me",
+    "body": ["module.exports = ${1:name};"],
+    "description": "Module exports"
+  },
+  "require": {
+    "prefix": "req",
+    "body": ["const ${1:name} = require('${2:module}');"],
+    "description": "Require statement"
+  },
+  "destructuring assignment": {
+    "prefix": "dest",
+    "body": ["const { ${1:properties} } = ${2:object};"],
+    "description": "Destructuring assignment"
+  },
+  "object literal": {
+    "prefix": "obj",
+    "body": ["{", "  ${1:key}: ${2:value},", "}"],
+    "description": "Object literal"
+  },
+  "array literal": {
+    "prefix": "arr",
+    "body": ["[${1:items}]"],
+    "description": "Array literal"
+  },
+  "ternary operator": {
+    "prefix": "tern",
+    "body": ["${1:condition} ? ${2:true} : ${3:false}"],
+    "description": "Ternary operator"
+  },
+  "switch statement": {
+    "prefix": "switch",
+    "body": ["switch (${1:expression}) {", "  case ${2:value1}:", "    ${3:// body}", "    break;", "  case ${4:value2}:", "    ${5:// body}", "    break;", "  default:", "    ${6:// body}", "    break;", "}"],
+    "description": "Switch statement"
+  },
+  "while loop": {
+    "prefix": "while",
+    "body": ["while (${1:condition}) {", "  ${2:// body}", "}"],
+    "description": "While loop"
+  },
+  "do...while loop": {
+    "prefix": "dowhile",
+    "body": ["do {", "  ${1:// body}", "} while (${2:condition});"],
+    "description": "Do...while loop"
+  },
+  "JSON.stringify": {
+    "prefix": "jss",
+    "body": ["JSON.stringify(${1:object}, null, ${2:2})"],
+    "description": "JSON.stringify"
+  },
+  "JSON.parse": {
+    "prefix": "jsp",
+    "body": ["JSON.parse(${1:string})"],
+    "description": "JSON.parse"
+  },
+  "fetch API": {
+    "prefix": "fetch",
+    "body": ["fetch('${1:url}')", "  .then(response => response.json())", "  .then(data => {", "    ${2:// handle data}", "  })", "  .catch(error => {", "    ${3:console.error('Error:', error);}", "  });"],
+    "description": "Fetch API"
+  },
+  "async fetch": {
+    "prefix": "afetch",
+    "body": ["try {", "  const response = await fetch('${1:url}');", "  const data = await response.json();", "  ${2:// handle data}", "} catch (error) {", "  ${3:console.error('Error:', error);}", "}"],
+    "description": "Async fetch"
+  }
+}
+

@@ -52,7 +52,7 @@ deleted = " "
 symbol = ""
 style = "fg:black bg:#56b6c2"
 format = "[ $symbol v$version ]($style)"
-version_format = "v${raw}"
+version_format = "${raw}"
 
 # ── Python ────────────────────────────────────────────────
 [python]
