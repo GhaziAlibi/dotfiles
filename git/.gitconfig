@@ -1,0 +1,91 @@
+[init]
+    defaultBranch = main
+
+[user]
+    name = ALIBI Ghazi
+    email = 123127137+GhaziAlibi@users.noreply.github.com
+
+[core]
+    editor = vim
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned
+    precomposeunicode = true
+    # Use custom `.gitignore`
+    excludesfile = ~/.gitignore_global
+    # Speed up commands involving untracked files
+    untrackedCache = true
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[color]
+    ui = auto
+
+[push]
+    # Make `git push` automatically set the upstream branch
+    autoSetupRemote = true
+    # Use the Git 1.x.x default to avoid errors on machines with old Git
+    # installations. To use `simple` instead, add this to your `~/.extra` file:
+    default = simple
+
+[pull]
+    # Prevent "how to reconcile divergent branches" message
+    rebase = false
+
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+    tool = vimdiff
+    conflictstyle = diff3
+
+[diff]
+    # Detect copies as well as renames
+    renames = copies
+    # Use better, descriptive initials (c, i, w) instead of a/b
+    mnemonicPrefix = true
+    # Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
+    colorMoved = default
+
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
+
+[alias]
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    # View the current working tree status using the short format
+    s = status -s
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+    # List contributors with number of commits
+    contributors = shortlog --summary --numbered
+    # Show the user email for the current repository
+    whoami = config user.email
+    # Amend the currently staged files to the latest commit
+    amend = commit --amend --reuse-message=HEAD
+    # Interactive rebase with the given number of latest commits
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+    # Find commits by source code
+    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+    # List aliases
+    aliases = config --get-regexp alias
+    # Shorter commands
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    # Pretty log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[fetch]
+    # Remove any remote-tracking references that no longer exist on the remote
+    prune = true
+
+[transfer]
+    # To combat repository corruption!
+    fsckObjects = true
+

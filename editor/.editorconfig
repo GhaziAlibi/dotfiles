@@ -1,0 +1,162 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# top-most EditorConfig file
+root = true
+
+###############################
+# General Settings            #
+###############################
+
+# Default for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+# Markdown files - allow trailing whitespace for line breaks
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+indent_size = 2
+
+###############################
+# Web Development             #
+###############################
+
+# HTML, CSS, JavaScript, TypeScript, etc.
+[*.{html,htm,css,scss,sass,less,js,jsx,ts,tsx,vue,svelte}]
+indent_size = 2
+
+# JSON, YAML, XML files
+[*.{json,yml,yaml,xml,toml}]
+indent_size = 2
+
+# GraphQL
+[*.{graphql,gql}]
+indent_size = 2
+
+###############################
+# Programming Languages       #
+###############################
+
+# Python
+[*.{py,pyi}]
+indent_size = 4
+# Specific to PEP8
+max_line_length = 88
+
+# Go
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# Rust
+[*.rs]
+indent_size = 4
+max_line_length = 100
+
+# Java, Kotlin, Scala
+[*.{java,kt,kts,scala}]
+indent_size = 4
+
+# C, C++, C#
+[*.{c,h,cpp,hpp,cc,hh,cxx,hxx,cs}]
+indent_size = 4
+
+# Ruby
+[*.{rb,rake,gemspec}]
+indent_size = 2
+
+# PHP
+[*.php]
+indent_size = 4
+
+# Swift
+[*.swift]
+indent_size = 4
+
+# Haskell
+[*.{hs,lhs}]
+indent_size = 2
+
+###############################
+# Shell Scripts               #
+###############################
+
+# Shell scripts
+[*.{sh,bash,zsh,fish}]
+indent_size = 2
+
+# PowerShell
+[*.{ps1,psd1,psm1}]
+indent_size = 4
+
+###############################
+# Configuration Files         #
+###############################
+
+# Docker files
+[{Dockerfile,docker-compose.yml}]
+indent_size = 2
+
+# Makefiles require tabs
+[Makefile]
+indent_style = tab
+
+# Git config files
+[.git{config,modules,*attributes}]
+indent_style = tab
+
+# Dotfiles
+[.{bashrc,zshrc,tmux.conf,vimrc,inputrc}]
+indent_size = 2
+
+###############################
+# Documentation               #
+###############################
+
+# Restructured Text and Sphinx
+[*.{rst,rest}]
+indent_size = 3
+max_line_length = 80
+
+# LaTeX
+[*.{tex,bib}]
+indent_size = 2
+
+###############################
+# Data and Config Formats     #
+###############################
+
+# CSV files
+[*.csv]
+indent_style = space
+indent_size = 1
+
+# SQL
+[*.sql]
+indent_size = 2
+
+# Protocol Buffers
+[*.{proto,protobuf}]
+indent_size = 2
+
+###############################
+# Project-specific            #
+###############################
+
+# Patch files should not be modified
+[*.{patch,diff}]
+trim_trailing_whitespace = false
+
+# Ignore some folders and files
+[{*.min.js,node_modules/**,vendor/**,dist/**,build/**}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
