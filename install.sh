@@ -282,6 +282,64 @@ install_dev_tools() {
   return 0
 }
 
+# Function to install VSCode extensions
+install_vscode_extensions() {
+  print_info "Installing VSCode extensions..."
+  
+  # Check if VSCode is installed
+  if ! command_exists "code"; then
+    print_warning "VSCode is not installed, skipping extension installation"
+    print_info "Install VSCode first: sudo pacman -S code"
+    return 0
+  fi
+  
+  # Check if extensions file exists
+  local extensions_file="${DOTFILES_DIR}/vscode/extensions.txt"
+  if [ ! -f "$extensions_file" ]; then
+    print_warning "Extensions file not found at $extensions_file"
+    return 0
+  fi
+  
+  # Read extensions from file and install them
+  local installed_count=0
+  local failed_count=0
+  local total_count=0
+  
+  while IFS= read -r line; do
+    # Skip empty lines and comments
+    if [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]]; then
+      continue
+    fi
+    
+    # Remove any trailing whitespace
+    extension=$(echo "$line" | tr -d '[:space:]')
+    
+    if [ -n "$extension" ]; then
+      ((total_count++))
+      print_info "Installing VSCode extension: $extension"
+      
+      if code --install-extension "$extension" --force; then
+        ((installed_count++))
+        print_success "Extension $extension installed successfully"
+      else
+        ((failed_count++))
+        print_warning "Failed to install extension: $extension"
+      fi
+    fi
+  done < "$extensions_file"
+  
+  # Report results
+  if [ $total_count -eq 0 ]; then
+    print_info "No extensions found to install"
+  elif [ $failed_count -eq 0 ]; then
+    print_success "All $installed_count VSCode extensions installed successfully"
+  else
+    print_warning "$installed_count of $total_count extensions installed successfully, $failed_count failed"
+  fi
+  
+  return 0
+}
+
 # Function to stow a package
 stow_package() {
   local package="$1"
@@ -338,6 +396,9 @@ main() {
   
   # Setup SSH (optional)
   setup_ssh
+  
+  # Install VSCode extensions (if VSCode is installed)
+  install_vscode_extensions
   
   # Create necessary directories
   print_info "Creating necessary directories..."

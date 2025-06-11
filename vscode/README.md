@@ -163,16 +163,68 @@ Modify the `workbench.colorTheme` setting in `settings.json` to change themes.
 cd ~/dotfiles/vscode
 git add .
 git commit -m "Update VSCode configuration"
+### Extension Management
+
+This configuration includes an automated extension management system:
+
+### Extension List (`extensions.txt`)
+All recommended extensions are listed in `extensions.txt`. This file is used by:
+- The main dotfiles installation script
+- The dedicated extension management script
+
+### Installing Extensions
+
+**Automatic Installation** (via main install script):
+```bash
+cd ~/dotfiles
+./install.sh  # Extensions are installed automatically if VSCode is detected
 ```
 
-### Backing Up Extensions
+**Manual Installation** (using the extension script):
 ```bash
-code --list-extensions > ~/.config/Code/User/extensions.txt
+cd ~/dotfiles/vscode
+./install-extensions.sh install
 ```
 
-### Restoring Extensions
+### Extension Script Usage
+
+The `install-extensions.sh` script supports multiple actions:
+
 ```bash
-cat ~/.config/Code/User/extensions.txt | xargs -L 1 code --install-extension
+# Install all extensions
+./install-extensions.sh install
+
+# List extensions that would be installed
+./install-extensions.sh list
+
+# Update all extensions
+./install-extensions.sh update
+
+# Uninstall all listed extensions
+./install-extensions.sh uninstall
+
+# Show help
+./install-extensions.sh help
+```
+
+### Managing the Extension List
+
+**Adding Extensions**:
+1. Add extension ID to `extensions.txt`
+2. Run `./install-extensions.sh install`
+
+**Finding Extension IDs**:
+```bash
+# List currently installed extensions
+code --list-extensions
+
+# Search for extensions in marketplace
+code --list-extensions | grep -i "search-term"
+```
+
+**Backing Up Current Extensions**:
+```bash
+code --list-extensions > extensions-backup.txt
 ```
 
 ## Contributing
