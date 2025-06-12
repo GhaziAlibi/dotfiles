@@ -3,7 +3,7 @@
 # VSCode Extensions Installation Script
 # This script installs all VSCode extensions listed in extensions.txt
 
-set -e  # Exit immediately if a command exits with a non-zero status
+# Note: We don't use 'set -e' to allow graceful error handling
 
 # Colors for output
 RED='\033[0;31m'
@@ -150,12 +150,18 @@ install_extensions() {
   for extension in "${extensions[@]}"; do
     print_info "Installing: $extension"
     
-    if code --install-extension "$extension" --force; then
+    # Try to install the extension, capture output
+    if output=$(code --install-extension "$extension" --force 2>&1); then
       ((installed_count++))
-      print_success "✓ $extension"
+      if echo "$output" | grep -q "already installed"; then
+        print_success "✓ $extension (already installed)"
+      else
+        print_success "✓ $extension (newly installed)"
+      fi
     else
       ((failed_count++))
       print_warning "✗ Failed to install: $extension"
+      print_warning "Error: $output"
     fi
   done
   

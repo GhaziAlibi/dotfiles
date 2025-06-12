@@ -10,6 +10,12 @@ pkief.material-product-icons
 # Language Support
 ms-vscode.vscode-typescript-next
 bradlc.vscode-tailwindcss
+rust-lang.rust-analyzer
+ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
+vadimcn.vscode-lldb
+serayuzgur.crates
+ms-dotnettools.csdevkit
 
 # Formatting and Linting
 esbenp.prettier-vscode

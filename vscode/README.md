@@ -25,6 +25,8 @@ This directory contains a comprehensive VSCode configuration optimized for devel
 ### Code Snippets
 - **JavaScript**: Comprehensive snippets for modern JS/ES6+ development
 - **Python**: Full Python development snippets including testing and async
+- **Rust**: Complete Rust development snippets including traits, async, and testing
+- **C#**: Full C# .NET snippets including LINQ, async/await, and unit testing
 - **TypeScript**: (shares JavaScript snippets)
 - **Additional Languages**: Ready for expansion with more language snippets
 
@@ -167,7 +169,7 @@ git commit -m "Update VSCode configuration"
 
 This configuration includes an automated extension management system:
 
-### Extension List (`extensions.txt`)
+### Extension List (`scripts/extensions.txt`)
 All recommended extensions are listed in `extensions.txt`. This file is used by:
 - The main dotfiles installation script
 - The dedicated extension management script
@@ -182,7 +184,7 @@ cd ~/dotfiles
 
 **Manual Installation** (using the extension script):
 ```bash
-cd ~/dotfiles/vscode
+cd ~/dotfiles/vscode/scripts
 ./install-extensions.sh install
 ```
 
@@ -210,7 +212,7 @@ The `install-extensions.sh` script supports multiple actions:
 ### Managing the Extension List
 
 **Adding Extensions**:
-1. Add extension ID to `extensions.txt`
+1. Add extension ID to `scripts/extensions.txt`
 2. Run `./install-extensions.sh install`
 
 **Finding Extension IDs**:
