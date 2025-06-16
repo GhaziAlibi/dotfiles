@@ -1,0 +1,29 @@
+# Ignore patterns for GNU Stow
+# These files won't be symlinked to the home directory
+
+# Documentation
+^/README.*
+^/LICENSE.*
+
+# Version control
+^/\.git
+^/\.gitignore
+^/\.gitmodules
+
+# Scripts
+^/install\.sh
+^/restructure\.sh
+
+# Stow ignore file
+^/\.stow-local-ignore
+
+# Backup files
+.*\.backup
+.*\.bak
+.*~
+
+# Common editor/system files
+^/\.DS_Store
+^/\.vscode
+^/\.idea
+

@@ -1,0 +1,335 @@
+{
+  "Console WriteLine": {
+    "prefix": "cw",
+    "body": ["Console.WriteLine($1);"],
+    "description": "Console.WriteLine"
+  },
+  "Console Write": {
+    "prefix": "c",
+    "body": ["Console.Write($1);"],
+    "description": "Console.Write"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "public class $1",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Class definition"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "public interface I$1",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Interface definition"
+  },
+  "Method": {
+    "prefix": "method",
+    "body": [
+      "public $1 $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Method definition"
+  },
+  "Public Method": {
+    "prefix": "pubm",
+    "body": [
+      "public $1 $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Public method"
+  },
+  "Private Method": {
+    "prefix": "privm",
+    "body": [
+      "private $1 $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Private method"
+  },
+  "Static Method": {
+    "prefix": "sm",
+    "body": [
+      "public static $1 $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Static method"
+  },
+  "Async Method": {
+    "prefix": "asyncm",
+    "body": [
+      "public async Task<$1> $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Async method"
+  },
+  "Main Method": {
+    "prefix": "main",
+    "body": [
+      "public static void Main(string[] args)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Main method"
+  },
+  "Property": {
+    "prefix": "prop",
+    "body": ["public $1 $2 { get; set; }"],
+    "description": "Auto property"
+  },
+  "Property with backing field": {
+    "prefix": "propfull",
+    "body": [
+      "private $1 _$2;",
+      "public $1 $3",
+      "{",
+      "    get { return _$2; }",
+      "    set { _$2 = value; }",
+      "}"
+    ],
+    "description": "Property with backing field"
+  },
+  "Constructor": {
+    "prefix": "ctor",
+    "body": [
+      "public $1($2)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Constructor"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (int $1 = 0; $1 < $2; $1++)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "For loop"
+  },
+  "Foreach Loop": {
+    "prefix": "foreach",
+    "body": [
+      "foreach (var $1 in $2)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Foreach loop"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while ($1)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ($1)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if ($1)",
+      "{",
+      "    $2",
+      "}",
+      "else",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "If else statement"
+  },
+  "Switch Statement": {
+    "prefix": "switch",
+    "body": [
+      "switch ($1)",
+      "{",
+      "    case $2:",
+      "        $3",
+      "        break;",
+      "    default:",
+      "        $0",
+      "        break;",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try",
+      "{",
+      "    $1",
+      "}",
+      "catch ($2Exception ex)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Try catch block"
+  },
+  "Try Catch Finally": {
+    "prefix": "tryf",
+    "body": [
+      "try",
+      "{",
+      "    $1",
+      "}",
+      "catch ($2Exception ex)",
+      "{",
+      "    $3",
+      "}",
+      "finally",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Try catch finally block"
+  },
+  "Using Statement": {
+    "prefix": "using",
+    "body": [
+      "using ($1)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Using statement"
+  },
+  "Using Directive": {
+    "prefix": "u",
+    "body": ["using $1;"],
+    "description": "Using directive"
+  },
+  "Namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace $1",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Namespace definition"
+  },
+  "Enum": {
+    "prefix": "enum",
+    "body": [
+      "public enum $1",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Enum definition"
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "public struct $1",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Struct definition"
+  },
+  "Test Method": {
+    "prefix": "test",
+    "body": [
+      "[Test]",
+      "public void $1()",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Test method (NUnit)"
+  },
+  "Fact Test Method": {
+    "prefix": "fact",
+    "body": [
+      "[Fact]",
+      "public void $1()",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Fact test method (xUnit)"
+  },
+  "Theory Test Method": {
+    "prefix": "theory",
+    "body": [
+      "[Theory]",
+      "[InlineData($1)]",
+      "public void $2($3)",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "Theory test method (xUnit)"
+  },
+  "Lambda Expression": {
+    "prefix": "lambda",
+    "body": ["($1) => $0"],
+    "description": "Lambda expression"
+  },
+  "LINQ Where": {
+    "prefix": "where",
+    "body": [".Where($1 => $0)"],
+    "description": "LINQ Where clause"
+  },
+  "LINQ Select": {
+    "prefix": "select",
+    "body": [".Select($1 => $0)"],
+    "description": "LINQ Select clause"
+  },
+  "String Interpolation": {
+    "prefix": "$",
+    "body": ["$\"$0\""],
+    "description": "String interpolation"
+  },
+  "Null Check": {
+    "prefix": "null",
+    "body": ["if ($1 != null)"],
+    "description": "Null check"
+  },
+  "Null Coalescing": {
+    "prefix": "??",
+    "body": ["$1 ?? $0"],
+    "description": "Null coalescing operator"
+  },
+  "Conditional Access": {
+    "prefix": "?.",
+    "body": ["$1?.$0"],
+    "description": "Conditional access operator"
+  }
+}
+

@@ -1,0 +1,5 @@
+# Files to ignore when stowing vscode configuration
+README.md
+extensions.txt
+install-extensions.sh
+

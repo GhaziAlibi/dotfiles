@@ -1,0 +1,52 @@
+# VSCode Extensions List
+# This file contains all the VSCode extensions to be installed
+# One extension ID per line, comments start with #
+
+# Theme and Icons
+zhuangtongfa.material-theme
+pkief.material-icon-theme
+pkief.material-product-icons
+
+# Language Support
+ms-vscode.vscode-typescript-next
+bradlc.vscode-tailwindcss
+rust-lang.rust-analyzer
+ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
+vadimcn.vscode-lldb
+serayuzgur.crates
+ms-dotnettools.csdevkit
+
+# Formatting and Linting
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+
+# Git Integration
+eamodio.gitlens
+
+# HTML/CSS Tools
+formulahendry.auto-rename-tag
+
+# Docker Support
+ms-azuretools.vscode-docker
+ms-azuretools.vscode-containers
+ms-vscode-remote.remote-containers
+
+# Productivity
+wayou.vscode-todo-highlight
+
+# Additional useful extensions (commented out by default)
+# ms-python.python
+# rust-lang.rust-analyzer
+# golang.go
+# ms-vscode.cpptools
+# ms-vscode.cmake-tools
+# ms-vscode-remote.remote-ssh
+# ms-vscode.live-server
+# christian-kohler.path-intellisense
+# bradlc.vscode-tailwindcss
+# ms-vscode.vscode-json
+# redhat.vscode-yaml
+# ms-vscode.hexeditor
+# alefragnani.bookmarks
+

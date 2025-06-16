@@ -1,0 +1,116 @@
+# Starship Prompt - Agnoster-Inspired, Clean, with Runtimes
+
+format = """
+[](fg:#61afef)\
+$directory\
+[](fg:#61afef bg:#e5c07b)\
+$git_branch$git_status\
+[](fg:#e5c07b bg:#56b6c2)\
+$nodejs$python$rust$dotnet$golang\
+[](fg:#56b6c2)\
+$status$character
+"""
+
+add_newline = true
+scan_timeout = 10
+
+# ── Directory ─────────────────────────────────────────────
+[directory]
+style = "fg:black bg:#61afef"
+format = "[  $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+home_symbol = "~"
+read_only = " ro"
+read_only_style = "red"
+
+# ── Git Branch ────────────────────────────────────────────
+[git_branch]
+symbol = ""
+style = "fg:black bg:#e5c07b"
+format = "[ $symbol $branch ]($style)"
+truncation_length = 20
+truncation_symbol = "…"
+
+# ── Git Status ────────────────────────────────────────────
+[git_status]
+style = "fg:black bg:#e5c07b"
+format = '[$all_status$ahead_behind ]($style)'
+conflicted = " ⚔"
+ahead = " ⇡"
+behind = " ⇣"
+diverged = " ⇕"
+untracked = " "
+stashed = " "
+modified = " "
+staged = " "
+renamed = " "
+deleted = " "
+
+# ── Node.js ───────────────────────────────────────────────
+[nodejs]
+symbol = ""
+style = "fg:black bg:#56b6c2"
+format = "[ $symbol v$version ]($style)"
+version_format = "${raw}"
+
+# ── Python ────────────────────────────────────────────────
+[python]
+symbol = ""
+style = "fg:black bg:#56b6c2"
+format = "[ $symbol v$version ]($style)"
+version_format = "v${raw}"
+
+# ── Rust ──────────────────────────────────────────────────
+[rust]
+symbol = ""
+style = "fg:black bg:#56b6c2"
+format = "[ $symbol v$version ]($style)"
+version_format = "${raw}"
+
+# ── .NET ──────────────────────────────────────────────────
+[dotnet]
+symbol = ""
+style = "fg:black bg:#56b6c2"
+format = "[ $symbol v$version ]($style)"
+version_format = "v${raw}"
+
+# ── Go ────────────────────────────────────────────────────
+[golang]
+symbol = ""
+style = "fg:black bg:#56b6c2"
+format = "[ $symbol v$version ]($style)"
+version_format = "v${raw}"
+
+# ── Character Prompt ──────────────────────────────────────
+[character]
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vicmd_symbol = "[](bold yellow)"
+format = "$symbol "
+
+# ── Exit Status ───────────────────────────────────────────
+[status]
+symbol = "✖"
+style = "bold red"
+format = "[ $symbol ]($style)"
+disabled = false
+
+# ── Disable unused modules ────────────────────────────────
+[username]
+disabled = true
+
+[time]
+disabled = true
+
+[battery]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[conda]
+disabled = true
+
+[java]
+disabled = true
