@@ -12,3 +12,5 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w 
 zstyle ':completion:*:processes-names' command 'ps c -u ${USER} -o command | uniq'
 zstyle ':completion:*:kill:*' force-list always
 
+source <(kubectl completion zsh)
+source <(minikube completion zsh) 
