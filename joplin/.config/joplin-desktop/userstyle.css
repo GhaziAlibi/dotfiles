@@ -1,0 +1,12 @@
+body {
+  font-family: "Fira Code", monospace !important;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+code, pre {
+  font-family: "Fira Code", monospace !important;
+  font-size: 13px;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
