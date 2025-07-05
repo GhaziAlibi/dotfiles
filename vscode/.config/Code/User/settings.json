@@ -750,5 +750,10 @@
       "id": "9A5581A7-89A1-4A98-99D4-D795EB62EFF0"
     }
   ],
-  "trae.chatLanguage": "en"
+  "trae.chatLanguage": "en",
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "code-style.md"
+    }
+  ]
 }
