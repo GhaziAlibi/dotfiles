@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Stopping Waydroid..."
+waydroid session stop
+sudo systemctl stop waydroid-container
+
+echo "Starting Waydroid..."
+sudo systemctl start waydroid-container
+
+echo "Starting Waydroid session detached..."
+nohup waydroid session start > /dev/null 2>&1 &
+
+echo "Waydroid restarted successfully."

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PROFILE=$1
+
+if [[ -z "$PROFILE" ]]; then
+  echo "Usage: $0 {performance|balance_performance|balance_power|power}"
+  exit 1
+fi
+
+if [[ "$PROFILE" == "performance" ]]; then
+  EPP_VALUE="performance"
+  TURBO=1
+elif [[ "$PROFILE" == "balance_performance" ]]; then
+  EPP_VALUE="balance_performance"
+  TURBO=1
+elif [[ "$PROFILE" == "balance_power" ]]; then
+  EPP_VALUE="balance_power"
+  TURBO=0
+elif [[ "$PROFILE" == "power" ]]; then
+  EPP_VALUE="power"
+  TURBO=0
+else
+  echo "Error: Invalid profile '$PROFILE'"
+  echo "Usage: $0 {performance|balance_performance|balance_power|power}"
+  exit 1
+fi
+
+# Check if EPP is available
+if [[ ! -d "/sys/devices/system/cpu/cpu0/cpufreq" ]]; then
+  echo "Error: CPU frequency scaling not available"
+  exit 1
+fi
+
+# Apply EPP value to all CPUs
+cpu_count=0
+for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
+  if [[ -f "$cpu/cpufreq/energy_performance_preference" ]]; then
+    if echo "$EPP_VALUE" > "$cpu/cpufreq/energy_performance_preference" 2>/dev/null; then
+      cpu_count=$((cpu_count + 1))
+    fi
+  fi
+done
+
+# Enable or disable turbo if available
+if [[ -f "/sys/devices/system/cpu/cpufreq/boost" && -w "/sys/devices/system/cpu/cpufreq/boost" ]]; then
+  echo $TURBO > /sys/devices/system/cpu/cpufreq/boost 2>/dev/null || true
+  turbo_status="turbo $([ $TURBO -eq 1 ] && echo "enabled" || echo "disabled")"
+else
+  turbo_status="turbo control not available"
+fi
+
+echo "Successfully set profile to $PROFILE on $cpu_count CPUs ($turbo_status)"

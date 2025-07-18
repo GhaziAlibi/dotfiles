@@ -39,7 +39,7 @@ alias search='pacman -Ss'
 alias remove='sudo pacman -Rs'
 alias yayu='yay -Syu'
 alias yayi='yay -S'
-alias yayr='yay -R'
+alias yayr='yay -Rnsc'
 alias yayl='yay -Qe'
 
 # =================
