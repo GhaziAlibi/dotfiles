@@ -10,8 +10,5 @@
 # Use C++ syntax for .ino files
 --map-syntax "*.ino:C++"
 
-# Use ".gitignore"-style pattern syntax
---pattern="*.{js,jsx,ts,tsx}"
-
 # Syntax highlight for markdown code blocks
 --pager="less -FR"
