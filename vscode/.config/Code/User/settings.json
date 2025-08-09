@@ -76,7 +76,6 @@
   "workbench.editor.decorations.colors": true,
   "workbench.editor.decorations.badges": true,
   "workbench.activityBar.location": "default",
-  "workbench.sideBar.location": "left",
   "workbench.panel.defaultLocation": "bottom",
   "workbench.statusBar.visible": true,
   "workbench.tree.indent": 8,
@@ -622,5 +621,11 @@
     {
       "file": "code-style.md"
     }
-  ]
+  ],
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
